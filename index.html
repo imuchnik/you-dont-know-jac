@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+
+    <title>reveal.js – The HTML Presentation Framework</title>
+
+    <meta name="description" content="A framework for easily creating beautiful presentations using HTML">
+    <meta name="author" content="Hakim El Hattab">
+
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+
+    <link rel="stylesheet" href="reveal.js-3.2.0/css/reveal.css">
+    <link rel="stylesheet" href="reveal.js-3.2.0/css/theme/simple.css" id="theme">
+
+    <!-- Code syntax highlighting -->
+    <link rel="stylesheet" href="reveal.js-3.2.0/lib/css/zenburn.css">
+
+    <!-- Printing and PDF exports -->
+    <script>
+        var link = document.createElement('link');
+        link.rel = 'stylesheet';
+        link.type = 'text/css';
+        link.href = window.location.search.match(/print-pdf/gi) ? 'reveal.js-3.2.0/css/print/pdf.css' : 'reveal.js-3.2.0/css/print/paper.css';
+        document.getElementsByTagName('head')[0].appendChild(link);
+    </script>
+
+    <!--[if lt IE 9]>
+    <script src="reveal.js-3.2.0/lib/js/html5shiv.js"></script>
+    <![endif]-->
+</head>
+
+<body>
+
+<div class="reveal">
+
+    <!-- Any section element inside of this container is displayed as a slide -->
+    <div class="slides">
+        <section>
+            <h1>You don't know JAC!</h1>
+            <h5>Dev CoP, Nov 24th</h5>
+            <p>
+                <small> by Irina Muchnik</small>
+            </p>
+
+            <p class="fragment">... but ...
+            <span class="fragment">... you are about to find out...</span>
+            </p>
+        </section>
+        <section id="fragments">
+            <h2>But...</h2>
+            <p>you are about to find out</p>
+
+            <aside class="notes">
+                This slide has fragments which are also stepped through in the notes window.
+            </aside>
+        </section>
+        <section>
+            <section>
+                <h2>Vertical Slides</h2>
+
+                <p>Slides can be nested inside of each other.</p>
+
+                <p>Use the <em>Space</em> key to navigate through all slides.</p>
+                <br>
+                <a href="#" class="navigate-down">
+                    <img width="178" height="238" data-src="https://s3.amazonaws.com/hakim-static/reveal-js/arrow.png"
+                         alt="Down arrow">
+                </a>
+            </section>
+            <section>
+                <h2>Basement Level 1</h2>
+
+                <p>Nested slides are useful for adding additional detail underneath a high level horizontal slide.</p>
+            </section>
+            <section>
+                <h2>Basement Level 2</h2>
+
+                <p>That's it, time to go back up.</p>
+                <br>
+                <a href="#/2">
+                    <img width="178" height="238" data-src="https://s3.amazonaws.com/hakim-static/reveal-js/arrow.png"
+                         alt="Up arrow" style="transform: rotate(180deg); -webkit-transform: rotate(180deg);">
+                </a>
+            </section>
+        </section>
+    </div>
+</div>
+<script src="reveal.js-3.2.0/lib/js/head.min.js"></script>
+<script src="reveal.js-3.2.0/js/reveal.js"></script>
+
+<script>
+
+    // Full list of configuration options available at:
+    // https://github.com/hakimel/reveal.js#configuration
+    Reveal.initialize({
+        controls: true,
+        progress: true,
+        history: true,
+        center: true,
+
+        transition: 'convex', // none/fade/slide/convex/concave/zoom
+
+        // Optional reveal.js plugins
+        dependencies: [
+            {
+                src: 'reveal.js-3.2.0/lib/js/classList.js', condition: function(){
+                return !document.body.classList;
+            }
+            },
+            {
+                src: 'reveal.js-3.2.0/plugin/markdown/marked.js', condition: function(){
+                return !!document.querySelector('[data-markdown]');
+            }
+            },
+            {
+                src: 'reveal.js-3.2.0/plugin/markdown/markdown.js', condition: function(){
+                return !!document.querySelector('[data-markdown]');
+            }
+            },
+            {
+                src: 'reveal.js-3.2.0/plugin/highlight/highlight.js', async: true, callback: function(){
+                hljs.initHighlightingOnLoad();
+            }
+            },
+            {src: 'reveal.js-3.2.0/plugin/zoom-js/zoom.js', async: true},
+            {src: 'reveal.js-3.2.0/plugin/notes/notes.js', async: true}
+        ]
+    });
+
+</script>
+
+</body>
+</html>
