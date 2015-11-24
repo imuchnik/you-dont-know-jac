@@ -16,7 +16,7 @@
           content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
 
     <link rel="stylesheet" href="reveal.js-3.2.0/css/reveal.css">
-    <link rel="stylesheet" href="reveal.js-3.2.0/css/theme/simple.css" id="theme">
+    <link rel="stylesheet" href="reveal.js-3.2.0/css/theme/night.css" id="theme">
 
     <!-- Code syntax highlighting -->
     <link rel="stylesheet" href="reveal.js-3.2.0/lib/css/zenburn.css">
@@ -44,51 +44,223 @@
         <section>
             <h1>You don't know JAC!</h1>
             <h5>Dev CoP, Nov 24th</h5>
+
             <p>
                 <small> by Irina Muchnik</small>
             </p>
 
             <p class="fragment">... but ...
-            <span class="fragment">... you are about to find out...</span>
+                <span class="fragment">you are about to find out...</span>
             </p>
         </section>
-        <section id="fragments">
-            <h2>But...</h2>
-            <p>you are about to find out</p>
 
-            <aside class="notes">
-                This slide has fragments which are also stepped through in the notes window.
-            </aside>
-        </section>
         <section>
             <section>
-                <h2>Vertical Slides</h2>
+                <h2>J. A. C. </h2>
+                <small>stands for</small>
+                <p>Jenkins As Code.</p>
 
-                <p>Slides can be nested inside of each other.</p>
-
-                <p>Use the <em>Space</em> key to navigate through all slides.</p>
                 <br>
-                <a href="#" class="navigate-down">
-                    <img width="178" height="238" data-src="https://s3.amazonaws.com/hakim-static/reveal-js/arrow.png"
-                         alt="Down arrow">
-                </a>
+
             </section>
             <section>
-                <h2>Basement Level 1</h2>
+                <h2>
+                    <p>Any questions?</p></h2>
 
-                <p>Nested slides are useful for adding additional detail underneath a high level horizontal slide.</p>
-            </section>
-            <section>
-                <h2>Basement Level 2</h2>
-
-                <p>That's it, time to go back up.</p>
-                <br>
-                <a href="#/2">
-                    <img width="178" height="238" data-src="https://s3.amazonaws.com/hakim-static/reveal-js/arrow.png"
-                         alt="Up arrow" style="transform: rotate(180deg); -webkit-transform: rotate(180deg);">
-                </a>
+                <span class="fragment">kidding....</span>
             </section>
         </section>
+        <section>
+            <H3>A quick recap</H3>
+            <ul>
+                <li class="fragment">First started by David Griesen and Dan Davis around May 2015</li>
+                <li class="fragment">Dan did a Dev CoP talk in September</li>
+                <li class="fragment"> I joined the effort at the end of September</li>
+                <li class="fragment"> Vic and I are currently assigned to actively work on it</li>
+            </ul>
+        </section>
+
+        <section>
+            <h4>Repo</h4>
+
+            <ul>
+                <li><p>https://github.com/cfpb/jenkins-automation</p></li>
+            </ul>
+            <br/>
+
+
+        </section>
+        <section>
+
+            <section data-markdown>
+                <h4>Guiding principles</h4>
+
+                1. Make it valuable
+                2. Make it easy
+                3. Make it fast
+                4. Make it pretty
+
+                and always [YAGNI](https://en.wikipedia.org/wiki/You_aren%27t_gonna_need_it),
+                [DRY](https://en.wikipedia.org/wiki/Don%27t_repeat_yourself)
+                and [KISS](https://en.wikipedia.org/wiki/KISS_principle)
+
+            </section>
+
+        </section>
+        <section>
+            <h2>So.. what's new?</h2>
+            <ul>
+
+                <li class="fragment">We have contibuted to job-dsl project</li>
+                <li class="fragment">Templates are gone
+                    <div class="fragment">Why?</div>
+                    <div class="fragment">It was fragile and brittle solution</div>
+                </li>
+
+                <li class="fragment">
+                    Replaced by Groovy builders
+
+                    <div class="fragment">Why?</div>
+                    <div class="fragment">Solves our passing parameters problems</div>
+                    <div class="fragment">no "hard-coded" jobs</div>
+                    <div class="fragment">Less Jenkins pollution</div>
+                </li>
+
+
+            </ul>
+        </section>
+
+        <section>
+            <h3><span>Here is a simple example</span></h3>
+
+            <div>
+                <code data-markdown>
+                    ```
+
+                    import jenkins.automation.utils.SiteMonitorJobBuilder
+
+                    new SiteMonitorJobBuilder(
+                    name: "my-site-pulse-check",
+                    description: "Sample url pulse check job",
+                    cronSchedule: "@daily",
+                    urls: ["http://google.com","http://yourethemannowdog.ytmnd.com/"]
+                    ).build(this);
+
+                    ```
+
+                </code>
+            </div>
+            </li>
+
+        </section>
+        <section>
+            <h3><span>Slightly more involved example</span></h3>
+
+            <div>
+                <code data-markdown>
+                    ```
+
+                    import jenkins.automation.utils.JsJobBuilder
+
+                    String basePath = 'JsJobSamples'
+                    List developers = ['irina.muchnik@cfpb.gov', 'daniel.davis@cfpb.gov']
+                    def repos = [
+                    [name: 'jenkins-automation', url:"https://github.com/cfpb/jenkins-automation@2.0"],
+                    [name: 'collab', url: "https://github.com/cfpb/jenkins-automation"]
+                    ]
+
+                    folder(basePath)
+                    {description 'This example shows how to create jobs using Job builders.'}
+
+                    new JsJobBuilder(
+                    name: "$basePath/MyProjectJavascriptJob",
+                    description: 'An example using a job builder for a Javascript build jobs project.',
+                    repos: repos,
+                    emails:developers,
+                    use_versions: true )git a
+                    .build(this)
+
+                    ```
+
+                </code>
+            </div>
+            </li>
+
+        </section>
+        <section>
+            <h3>Docs on builders and other useful stuff</h3>
+            <a href="http://imuchnik.github.io/jenkins-automation/" target="_blank">http://cfpb.github.io/jenkins-automation/</a>
+
+            <p class="fragment">Auto generated</p>
+
+            <p class="fragment">From groovydoc comments</p>
+
+            <div class="fragment">Like this:
+
+                <img src="groovydoc.png" alt=""/>
+            </div>
+
+
+        </section>
+        <section>
+            <h3>How do you get started?</h3>
+            <h5>Starter repo</h5>
+            <a href="https://github.com/cfpb/jenkins-as-code-starter-project/" target="_blank">https://github.com/cfpb/jenkins-as-code-starter-project/</a>
+
+            <p>
+            <h6 class="fragment">
+                What's in the box
+            </h6>
+            <ul>
+                <li class="fragment">Automated Gradle Build</li>
+                <li class="fragment">All nesessary dependencies</li>
+                <li class="fragment">Directory structure</li>
+                <li class="fragment">Examples</li>
+                <li class="fragment">Test infrastructure and examples</li>
+            </ul>
+            </p>
+        </section>
+
+        <section>
+            <h2>So, what's next?</h2>
+            <ul class="fragment">
+                <li>Continue developing builders and utilities</li>
+                <li>Move towards "one-click" automation</li>
+                <li>Port existing production orphan projects jobs</li>
+            </ul>
+        </section>
+        <section>
+            <h2>So, what's next? cont'd</h2>
+            <img src="https://encrypted-tbn1.gstatic.com/images?q=tbn:ANd9GcTSbzf7E8iFNwJmCI6qjZ2uebgD2nJiYF3PVMZ1WDfZVD5_nPPH"
+                 alt=""/>
+        </section>
+
+        <section>
+            <h1>?</h1>
+        </section>
+
+        <section>
+            <h3>Do I have more time?</h3>
+            <h4 class="fragment">Demo?</h4>
+            <h4 class="fragment">Bonus slides?</h4>
+        </section>
+
+        <section>
+            <h3>Testimonials</h3>
+            <p class="fragment">Marc Esher has tried on Qu and he described the experience as</p>
+            <span class="fragment"><em>"Ejoyable!  "</em></span>
+            <span class="fragment"><em>"And Cool! "</em></span>
+            <span class="fragment"><em>"And Fun!  "</em></span>
+            <span class="fragment">
+                <img src="stickb.jpg" alt=""/>
+            </span>
+            
+        </section>
+        <section>
+            <h1>Thank you!</h1>
+        </section>
+
+
     </div>
 </div>
 <script src="reveal.js-3.2.0/lib/js/head.min.js"></script>
