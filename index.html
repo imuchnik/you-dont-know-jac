@@ -140,10 +140,10 @@
                     import jenkins.automation.utils.SiteMonitorJobBuilder
 
                     new SiteMonitorJobBuilder(
-                    name: "my-site-pulse-check",
-                    description: "Sample url pulse check job",
-                    cronSchedule: "@daily",
-                    urls: ["http://google.com","http://yourethemannowdog.ytmnd.com/"]
+                        name: "my-site-pulse-check",
+                        description: "Sample url pulse check job",
+                        cronSchedule: "@daily",
+                        urls: ["http://google.com","http://yourethemannowdog.ytmnd.com/"]
                     ).build(this);
 
                     ```
@@ -173,11 +173,11 @@
                     {description 'This example shows how to create jobs using Job builders.'}
 
                     new JsJobBuilder(
-                    name: "$basePath/MyProjectJavascriptJob",
-                    description: 'An example using a job builder for a Javascript build jobs project.',
-                    repos: repos,
-                    emails:developers,
-                    use_versions: true )git a
+                        name: "$basePath/MyProjectJavascriptJob",
+                        description: 'An example using a job builder for a Javascript build jobs project.',
+                        repos: repos,
+                        emails:developers,
+                        use_versions: true )git a
                     .build(this)
 
                     ```
